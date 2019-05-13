@@ -11,5 +11,17 @@ services:
       - ./custom_config.json:/etc/rabbitmq/custom_config.json
       - rabbitmq-data:/var/lib/rabbitmq
 
+  client:
+    image: python:3.7.3-alpine3.8
+    environment:
+      RABBITMQ_USER: h3poteto
+      RABBITMQ_PASSWORD: h3poteto
+    command: /bin/sh
+    links:
+      - rabbitmq:rabbitmq
+    working_dir: /var/opt/app
+    volumes:
+      - .:/var/opt/app
+
 volumes:
   rabbitmq-data:

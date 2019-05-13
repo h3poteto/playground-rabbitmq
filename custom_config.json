@@ -59,5 +59,14 @@
       "arguments":{}
     }
   ],
-  "bindings":[]
+  "bindings":[
+    {
+      "source": "akira-exchange",
+      "vhost": "/",
+      "destination": "akira-queue",
+      "destination_type": "queue",
+      "routing_key": "akira",
+      "arguments": {}
+    }
+  ]
 }
