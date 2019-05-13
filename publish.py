@@ -9,10 +9,14 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(
     credentials=credentials))
 channel = connection.channel()
 
+priority=pika.spec.BasicProperties(priority=2)
+
 channel.basic_publish(
     exchange='akira-exchange',
     routing_key='akira',
-    body='Hello World')
+    body='hello 2',
+    properties=priority
+)
 
 print(" [x] Sent 'Hello World'")
 connection.close()
