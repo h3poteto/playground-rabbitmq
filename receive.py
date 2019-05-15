@@ -5,7 +5,7 @@ credentials = pika.PlainCredentials(os.environ['RABBITMQ_USER'], os.environ['RAB
 connection = pika.BlockingConnection(pika.ConnectionParameters(
     host='rabbitmq',
     port=5672,
-    virtual_host='/',
+    virtual_host='/akira',
     credentials=credentials))
 channel = connection.channel()
 

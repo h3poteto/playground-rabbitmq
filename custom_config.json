@@ -17,6 +17,9 @@
   "vhosts":[
     {
       "name":"/"
+    },
+    {
+      "name": "/akira"
     }
   ],
   "permissions":[
@@ -29,7 +32,7 @@
     },
     {
       "user":"h3poteto",
-      "vhost":"/",
+      "vhost":"/akira",
       "configure":".*",
       "write":".*",
       "read":".*"
@@ -42,7 +45,7 @@
   "queues":[
     {
       "name":"akira-queue",
-      "vhost":"/",
+      "vhost":"/akira",
       "durable":true,
       "auto_delete":false,
       "arguments":{
@@ -53,7 +56,7 @@
   "exchanges":[
     {
       "name":"akira-exchange",
-      "vhost":"/",
+      "vhost":"/akira",
       "type":"direct",
       "durable":true,
       "auto-delete":false,
@@ -64,7 +67,7 @@
   "bindings":[
     {
       "source": "akira-exchange",
-      "vhost": "/",
+      "vhost": "/akira",
       "destination": "akira-queue",
       "destination_type": "queue",
       "routing_key": "akira",
