@@ -15,7 +15,8 @@ services:
       RABBITMQ_PORT: 5672
       RABBITMQ_USER: h3poteto
       RABBITMQ_PASSWORD: h3poteto
-    command: /bin/sh
+    entrypoint: ./entrypoint.sh
+    command: python receive.py
     links:
       - rabbitmq:rabbitmq
     working_dir: /var/opt/app/python
