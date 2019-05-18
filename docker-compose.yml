@@ -8,15 +8,36 @@ services:
       - ./custom_config.json:/etc/rabbitmq/custom_config.json
       - rabbitmq-data:/var/lib/rabbitmq
 
-  client:
+  python:
     image: python:3.7.3-alpine3.8
     environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
       RABBITMQ_USER: h3poteto
       RABBITMQ_PASSWORD: h3poteto
     command: /bin/sh
     links:
       - rabbitmq:rabbitmq
-    working_dir: /var/opt/app
+    working_dir: /var/opt/app/python
+    volumes:
+      - .:/var/opt/app
+
+  node:
+    image: node:12-alpine
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: h3poteto
+      RABBITMQ_PASSWORD: h3poteto
+      RABBITMQ_VHOST: /akira
+    entrypoint: sh -c
+    command: |
+      "yarn install && \
+      yarn run build && \
+      node dist/index.js"
+    links:
+      - rabbitmq:rabbitmq
+    working_dir: /var/opt/app/node
     volumes:
       - .:/var/opt/app
 
